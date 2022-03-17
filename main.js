@@ -29,7 +29,21 @@ scene.add(pointLight, ambientLight)
 const lightHelp = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelp)
 
+
 const controls = new OrbitControls(camera, renderer.domElement);
+
+function addstar(){
+const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+const material = new THREE.MeshStandardMaterial( { color: 0xffffff })
+const star = new THREE. Mesh( geometry, material );
+
+const [x, y, z] = Array(3).fill().map(() => THREE.Mathutils.randFloatSpreadk (100 ) );
+star.position.set(x, y, z);
+scene.add(star)
+
+}
+Array(200).fill().forEach(addstar)
+
 function animate() {
   requestAnimationFrame(animate);
   tetra.rotation.x += 0.01;
@@ -38,5 +52,6 @@ function animate() {
   controls.update();
   renderer.render(scene, camera);
 }
+
 
 animate();
