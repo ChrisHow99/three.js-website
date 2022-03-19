@@ -16,38 +16,59 @@ camera.position.setZ(30);
 
 renderer.render(scene, camera);
 
-const geometry = new THREE.TetrahedronBufferGeometry(10,3,16,100);
-const material = new THREE.MeshStandardMaterial({color:0xFF6347});
+const geometry = new THREE.SphereGeometry(2, 24, 24);
+const material = new THREE.MeshStandardMaterial({color:0xFFCC33});
 const tetra = new THREE.Mesh(geometry, material);
 
 scene.add(tetra)
-const ambientLight = new THREE.AmbientLight(0xffffff)
+const ambientLight = new THREE.AmbientLight(0x222222)
 const pointLight = new THREE.PointLight(0xffffff)
-pointLight.position.set(6,6,6)
+pointLight.position.set(0,0,0)
 
 scene.add(pointLight, ambientLight)
 const lightHelp = new THREE.PointLightHelper(pointLight)
-scene.add(lightHelp)
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(lightHelp,gridHelper)
 
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-function addstar(){
-const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-const material = new THREE.MeshStandardMaterial( { color: 0xffffff })
-const star = new THREE. Mesh( geometry, material );
+function addStar() {
+  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const star = new THREE.Mesh(geometry, material);
 
-const [x, y, z] = Array(3).fill().map(() => THREE.Mathutils.randFloatSpreadk (100 ) );
-star.position.set(x, y, z);
-scene.add(star)
+  const [x, y, z] = Array(3)
+    .fill()
+    .map(() => THREE.MathUtils.randFloatSpread(1500));
 
+  star.position.set(x, y, z);
+  scene.add(star);
 }
-Array(200).fill().forEach(addstar)
+
+Array(200).fill().forEach(addStar);
+
+
+const earthTexture = new THREE.TextureLoader().load('Earth2.jpg');
+const earthNTexture = new THREE.TextureLoader().load('earthNormal.jpg');
+
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(1, 40, 40),
+  new THREE.MeshStandardMaterial({
+    map: earthTexture,
+    normalMap: earthNTexture,
+  })
+);
+
+scene.add(earth);
+
+earth.position.z = 30;
+earth.position.setX(-10);
 
 function animate() {
   requestAnimationFrame(animate);
-  tetra.rotation.x += 0.01;
-  tetra.rotation.y += 0.007;
+  earth.rotation.y += 0.0001;
+  
 
   controls.update();
   renderer.render(scene, camera);
