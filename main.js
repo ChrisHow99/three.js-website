@@ -65,11 +65,11 @@ function createPlanet(textureMap, normalMap,size,notsure,y,z,x){
     return planet;
 }
 
-const earth2 = createPlanet('Earth2.jpg','earthNormal.jpg',1,40,40,60,100)
+const earth2 = createPlanet('/assets/Earth2.jpg','/assets/earthNormal.jpg',1,40,40,60,100)
 scene.add(earth2);
 
 
-const earth = createPlanet('Earth2.jpg','earthNormal.jpg',1,40,40,30,-30)
+const earth = createPlanet('/assets/Earth2.jpg','/assets/earthNormal.jpg',1,40,40,30,-30)
 scene.add(earth);
 
 function animate() {
