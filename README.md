@@ -11,3 +11,5 @@ emissive texture for sun
 planet obrits
 
 better controls
+
+shader for stars
