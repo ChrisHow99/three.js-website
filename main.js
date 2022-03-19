@@ -49,25 +49,32 @@ function addStar() {
 Array(200).fill().forEach(addStar);
 
 
-const earthTexture = new THREE.TextureLoader().load('Earth2.jpg');
-const earthNTexture = new THREE.TextureLoader().load('earthNormal.jpg');
+function createPlanet(textureMap, normalMap,size,notsure,y,z,x){
+  const texture = new THREE.TextureLoader().load(textureMap);
+  const nTexture = new THREE.TextureLoader().load(normalMap);
 
-const earth = new THREE.Mesh(
-  new THREE.SphereGeometry(1, 40, 40),
-  new THREE.MeshStandardMaterial({
-    map: earthTexture,
-    normalMap: earthNTexture,
-  })
-);
+  const planet = new THREE.Mesh(
+    new THREE.SphereGeometry(size, notsure, y),
+    new THREE.MeshStandardMaterial({
+      map: texture,
+      normalMap: nTexture,
+    })
+  )
+    planet.position.z = z;
+    planet.position.setX(x);
+    return planet;
+}
 
+const earth2 = createPlanet('Earth2.jpg','earthNormal.jpg',1,40,40,60,100)
+scene.add(earth2);
+
+
+const earth = createPlanet('Earth2.jpg','earthNormal.jpg',1,40,40,30,-30)
 scene.add(earth);
-
-earth.position.z = 30;
-earth.position.setX(-10);
 
 function animate() {
   requestAnimationFrame(animate);
-  earth.rotation.y += 0.0001;
+  earth.rotation.y += 0.1;
   
 
   controls.update();
