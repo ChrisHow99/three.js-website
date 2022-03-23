@@ -4,9 +4,9 @@
 
 TODO:
 
-~~planet constructure
+~~planet constructure~~
 
-~~emissive shader for sun
+~~emissive shader for sun~~
 
 emissive shader for sun
 
@@ -18,4 +18,4 @@ shader for stars
 
 all panests and textures included
 
-~~deploy website
+~~deploy website~~
