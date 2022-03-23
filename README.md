@@ -4,9 +4,11 @@
 
 TODO:
 
-planet constructure
+~~planet constructure
 
-emissive texture for sun
+~~emissive shader for sun
+
+emissive shader for sun
 
 planet obrits
 
@@ -14,4 +16,6 @@ better controls
 
 shader for stars
 
-deploy website
+all panests and textures included
+
+~~deploy website
